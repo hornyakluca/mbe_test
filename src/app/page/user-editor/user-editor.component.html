@@ -1,0 +1,28 @@
+<div class="row">
+  <div *ngIf="user$ | async as user" class="col-12">
+      <form #userForm="ngForm" (ngSubmit)="onUpdate(user)">
+          <div class="form-goup">
+              <label>Name</label>
+              <input required [(ngModel)]="user.name" name="name" type="text" class="form-control"
+                  pattern="^[A-Z][A-Z a-z0-9]{4,19}$">
+              <div *ngIf="userForm.controls['name']?.invalid" class="error-message">
+                  Min 4 chars, max 20 chars, uppercase, lowercase, space and numbers.
+              </div>
+          </div>
+          <div class="form-goup">
+              <label>Email</label>
+              <input required [(ngModel)]="user.email" name="email" type="text" class="form-control">
+          </div>
+          <div class="form-goup">
+              <label>Category</label>
+              <input required [(ngModel)]="user.category" name="category" type="text" class="form-control">
+          </div>
+
+          <div class="d-grid mt-3">
+              <button [disabled]="userForm.invalid" class="btn btn-primary btn-lg">
+                  <i class="fa fa-save"></i> Update
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
